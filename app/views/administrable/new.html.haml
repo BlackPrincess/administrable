@@ -1,6 +1,8 @@
 .row
   .col-sm-10
-    %h1 New
+    %h1
+      New
+      = model_class.model_name.human
 
 .row
   = render 'form'

@@ -8,6 +8,7 @@ module Administrable
       end
 
       helper_method :administrable_index_url, :administrable_new_url, :administrable_edit_url
+      helper_method :model_class
       before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
       def index
