@@ -77,7 +77,7 @@ module Administrable
       end
       
       def permitted_params
-        params[model_class.name.underscore.to_sym].permit!
+        params.require(model_class.name.underscore.to_sym).permit!
       end
     end
   end
