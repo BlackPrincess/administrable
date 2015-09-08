@@ -11,3 +11,4 @@ require 'ransack'
 require 'kaminari'
 
 require 'administrable/engine'
+require 'administrable/controllers/concerns/crud_feature'

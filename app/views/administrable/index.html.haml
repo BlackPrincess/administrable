@@ -1,0 +1,52 @@
+.row
+  .col-sm-10
+    %h1
+      Listing
+      = model_class.model_name.human
+  .col-sm-2.text-right
+    .row
+      - # TODO:
+      %h1
+        %a.btn.btn-primary.btn-new.btn-sm{href: administrable_new_url}
+          %i.glyphicon.glyphicon-plus
+          New
+.row
+  .well.col-sm-12
+    = search_form_for(@q) do |f|
+      %fieldset
+        .form-group.col-lg-3.col-sm-4.col-xs-6
+          = f.label(:name_cont, class: "control-label") 
+          = f.search_field(:name_cont, class: "form-control", placeholder: "FIXME")
+        .form-group.col-lg-3.col-sm-4.col-xs-6
+          = f.label(:name_cont, class: "control-label") 
+          = f.search_field(:name_cont, class: "form-control", placeholder: "FIXME")
+        .form-group.col-lg-3.col-sm-4.col-xs-6
+          = f.label(:name_cont, class: "control-label") 
+          = f.search_field(:name_cont, class: "form-control", placeholder: "FIXME")
+        .form-group.col-lg-3.col-sm-4.col-xs-6
+          = f.label(:name_cont, class: "control-label") 
+          = f.search_field(:name_cont, class: "form-control", placeholder: "FIXME")
+
+        .form-group.col-xs-12.text-center
+          = f.button type: :submit, class: 'btn btn-default btn-search' do
+            %i.glyphicon.glyphicon-search
+            Search
+.row
+  .text-center
+    = paginate @resources
+  %table.table.table-striped.col-xs-12
+    %thead
+      %tr
+        %th= sort_link(@q, :name)
+        %th
+    %tbody
+      - @resources.each do |resource|
+        %tr
+          %td= resource.name
+          %td.text-right
+            = link_to 'Show', resource, class: 'btn btn-info btn-show btn-sm'
+            = link_to 'Edit', administrable_edit_url(resource), class: 'btn btn-default btn-edit btn-sm'
+
+  .text-center
+    = paginate @resources
+
