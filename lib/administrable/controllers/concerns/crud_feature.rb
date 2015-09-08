@@ -4,7 +4,7 @@ module Administrable
 
     included do |klass|
       def klass.local_prefixes
-        super + ['administrable']
+        super + ["#{controller_path}/parts", 'administrable', 'administrable/parts']
       end
 
       helper_method :administrable_index_url, :administrable_new_url, :administrable_edit_url

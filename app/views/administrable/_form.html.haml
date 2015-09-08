@@ -1,20 +1,10 @@
 - if @resource.errors.any? 
-  .alert.alert-dismissible.alert-warning
-    %ul
-      - @resource.errors.full_messages.each do |message| 
-        %li= message
+  = render partial: 'error_massages', locals: {resource: @resource}
 
 .well
   = form_for(@resource, html: {class: 'form-horizontal'}) do |f|
     %fieldset
       -# TODO: implement
       - @resource.attributes.except('id', 'created_at', 'updated_at').keys.each do |attr|
-        .form-group
-          = f.label attr, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = f.text_field attr, class: 'form-control'
-            
-      .form-group
-        .col-sm-12.text-center
-          = link_to 'Back', administrable_index_url, class: 'btn btn-default'
-          = f.submit class: 'btn btn-primary'
+        = render partial: 'form_group', locals: {f: f, attr: attr}
+      = render partial: 'form_actions', locals: {f: f}
