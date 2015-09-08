@@ -1,0 +1,2 @@
+module Administrable
+end
