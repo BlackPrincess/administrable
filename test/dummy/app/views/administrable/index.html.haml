@@ -5,7 +5,7 @@
     .row
       - # TODO:
       %h1
-        %a.btn.btn-primary.btn-new.btn-sm{href: new_company_path}
+        %a.btn.btn-primary.btn-new.btn-sm{href: administrable_new_url}
           %i.glyphicon.glyphicon-plus
           New
 .row
@@ -43,7 +43,7 @@
           %td= resource.name
           %td.text-right
             = link_to 'Show', resource, class: 'btn btn-info btn-show btn-sm'
-            = link_to 'Edit', edit_company_path(resource), class: 'btn btn-default btn-edit btn-sm'
+            = link_to 'Edit', administrable_edit_url(resource), class: 'btn btn-default btn-edit btn-sm'
 
   .text-center
     = paginate @resources
