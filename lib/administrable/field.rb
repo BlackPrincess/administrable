@@ -9,9 +9,10 @@ module Administrable
       
       def field_type(klass, attr)
         # TODO:
-        association = klass.reflect_on_all_associations.find { |_| _.foreign_key == attr }
-        if association.present?
-          :select # TODO: it should 'type' != 'html input type'
+        if get_association_belongs_to(klass, attr).present?
+          :belongs_to
+        elsif klass.defined_enums(attr).present?
+          :enum
         else
           klass.columns_hash[attr].type
         end
@@ -19,9 +20,23 @@ module Administrable
       
       def data_for_select(klass, attr)
         # TODO:
-        association = klass.reflect_on_all_associations.find { |_| _.foreign_key == attr }
+        association = get_association_class(klass, attr)
         return [] if association.nil?
-        association.klass.pluck(:name, :id)
+        if association.respond_to?(:list_for_select)
+          association.list_for_select
+        else
+          association.pluck(:name, :id)  
+        end
+      end
+      
+      def get_association_class(klass, attr)
+        # TODO:
+        get_association_belongs_to(klass, attr).try(:klass)
+      end
+      
+      def get_association_belongs_to(klass, attr)
+        # TODO:
+        klass.reflect_on_all_associations(:belongs_to).find { |_| _.foreign_key == attr }
       end
     end
   end

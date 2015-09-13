@@ -3,8 +3,10 @@
   .col-sm-10
     -# TODO:
     - case Administrable::Field.field_type(model_class, attr)
-      - when :select
+      - when :belongs_to
         = f.select(attr, Administrable::Field.data_for_select(model_class, attr), {include_blank: true}, class: 'form-control')
+      - when :enum
+      
       - when :text
         = f.text_area attr, class: 'form-control'
       - when :integer
