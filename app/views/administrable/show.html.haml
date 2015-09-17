@@ -8,7 +8,7 @@
   .well
     %dl.dl-horizontal
       -# TODO: implement
-      - @resource.attributes.except('id', 'created_at', 'updated_at').keys.each do |attr|
+      - Administrable::Field.show_fields(@resource).each do |attr|
         %dt
           = @resource.class.human_attribute_name(attr)
         %dd

@@ -1,4 +1,23 @@
+-# TODO:
 .form-group
   = f.label attr, class: 'col-sm-2 control-label'
   .col-sm-10
-    = f.text_field attr, class: 'form-control'
+    -# TODO:
+    - case Administrable::Field.field_type(model_class, attr)
+      - when :belongs_to
+        = f.select(attr, Administrable::Field.data_for_select(model_class, attr), {include_blank: true}, class: 'form-control')
+      - when :enum
+        - model_class.defined_enums[attr].each do |k,v|
+          .radio.radio-inline
+            %label
+              = f.radio_button(attr, v)
+              - # zmbacker/enum_help
+              = k
+      - when :text
+        = f.text_area attr, class: 'form-control'
+      - when :integer
+        = f.number_field attr, class: 'form-control'
+      - when :date
+        = f.date_field attr, class: 'form-control'
+      - else
+        = f.text_field attr, class: 'form-control'
