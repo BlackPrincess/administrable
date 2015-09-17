@@ -11,7 +11,7 @@ module Administrable
         # TODO:
         if get_association_belongs_to(klass, attr).present?
           :belongs_to
-        elsif klass.defined_enums(attr).present?
+        elsif klass.defined_enums[attr].present?
           :enum
         else
           klass.columns_hash[attr].type
