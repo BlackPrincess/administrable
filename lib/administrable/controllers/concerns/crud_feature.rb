@@ -98,10 +98,12 @@ module Administrable
       end
       
       def form_fields
+        @resource ||= model_class.new # TODO:
         Administrable::Field.edit_fields(@resource)
       end
       
       def show_fields
+        @resource ||= model_class.new # TODO:
         Administrable::Field.show_fields(@resource)
       end
       
