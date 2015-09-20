@@ -12,6 +12,9 @@
           = @resource.class.human_attribute_name(attr)
         %dd
           - case Administrable::Field.field_type(model_class, attr)
+          - when :belongs_to
+            -# TODO:
+            = @resource.try(Administrable::Field.accociation_attribute(model_class, attr)).try(:name)
           - when :enum
             = @resource.send("#{attr}_i18n")
           - else

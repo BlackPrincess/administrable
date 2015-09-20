@@ -18,8 +18,11 @@ module Administrable
           :belongs_to
         elsif klass.defined_enums[attr].present?
           :enum
-        else
+        elsif klass.columns_hash[attr].present?
           klass.columns_hash[attr].type
+        else
+          # Default type is string
+          :string
         end
       end
       
@@ -42,6 +45,11 @@ module Administrable
       def get_association_belongs_to(klass, attr)
         # TODO:
         klass.reflect_on_all_associations(:belongs_to).find { |_| _.foreign_key == attr }
+      end
+      
+      def accociation_attribute(klass, attr)
+        # TODO:
+        get_association_belongs_to(klass, attr).name
       end
     end
   end

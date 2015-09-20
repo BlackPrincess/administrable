@@ -34,8 +34,16 @@
     %tbody
       - @resources.each do |resource|
         %tr
-          - @search_results_row_fields.each do |field|
-            %td= resource.try(field)
+          - @search_results_row_fields.map(&:to_s).each do |field|
+            %td
+              - case Administrable::Field.field_type(model_class, field)
+                - when :belongs_to
+                  -# TODO:
+                  = resource.try(Administrable::Field.accociation_attribute(model_class, field)).try(:name)
+                - when :enum
+                  = resource.send("#{attr}_i18n")
+                - else
+                  = resource.try(field)
           %td.text-right
             = link_to I18n.t('administrable.show'), resource, class: 'btn btn-default btn-show btn-sm'
             = link_to I18n.t('administrable.edit'), administrable_edit_url(resource), class: 'btn btn-info btn-edit btn-sm'
