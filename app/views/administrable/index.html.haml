@@ -37,7 +37,7 @@
           - @search_results_fields.each do |field|
             %td= resource.try(field)
           %td.text-right
-            = link_to 'Show', resource, class: 'btn btn-info btn-show btn-sm'
-            = link_to 'Edit', administrable_edit_url(resource), class: 'btn btn-default btn-edit btn-sm'
+            = link_to 'Show', resource, class: 'btn btn-default btn-show btn-sm'
+            = link_to 'Edit', administrable_edit_url(resource), class: 'btn btn-info btn-edit btn-sm'
   .text-center
     = paginate @resources
