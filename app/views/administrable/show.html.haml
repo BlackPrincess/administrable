@@ -16,11 +16,11 @@
 
 .row
   .col-xs-12.text-center
-    = link_to 'Back', administrable_index_url, class: 'btn btn-default'
-    = link_to 'Edit', administrable_edit_url(@resource), class: 'btn btn-info'
+    = link_to I18n.t('administrable.back'), administrable_index_url, class: 'btn btn-default'
+    = link_to I18n.t('administrable.edit'), administrable_edit_url(@resource), class: 'btn btn-info'
 
 %hr
 
 .row
   .text-center
-    = link_to 'Destroy', @resource, :method => :delete, class: 'btn btn-danger'
+    = link_to I18n.t('administrable.destroy'), @resource, :method => :delete, class: 'btn btn-danger'

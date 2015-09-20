@@ -9,7 +9,7 @@
       %h1
         %a.btn.btn-primary.btn-new.btn-sm{href: administrable_new_url}
           %i.glyphicon.glyphicon-plus
-          New
+          = I18n.t('administrable.new')
 .row
   .well.col-sm-12
     = search_form_for(@q) do |f|
@@ -21,7 +21,7 @@
         .form-group.col-xs-12.text-center
           = f.button type: :submit, class: 'btn btn-default btn-search' do
             %i.glyphicon.glyphicon-search
-            Search
+            = I18n.t('administrable.search')
 .row
   .text-center
     = paginate @resources
@@ -37,7 +37,7 @@
           - @search_results_fields.each do |field|
             %td= resource.try(field)
           %td.text-right
-            = link_to 'Show', resource, class: 'btn btn-default btn-show btn-sm'
-            = link_to 'Edit', administrable_edit_url(resource), class: 'btn btn-info btn-edit btn-sm'
+            = link_to I18n.t('administrable.show'), resource, class: 'btn btn-default btn-show btn-sm'
+            = link_to I18n.t('administrable.edit'), administrable_edit_url(resource), class: 'btn btn-info btn-edit btn-sm'
   .text-center
     = paginate @resources
