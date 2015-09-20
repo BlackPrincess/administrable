@@ -5,7 +5,12 @@ module Administrable
         resource.attributes.except('id', 'created_at', 'updated_at').keys
       end
       
-      alias :show_fields :edit_fields
+      def show_fields(resource)
+        fields = edit_fields(resource)
+        fields << 'created_at' if resource.respond_to?('created_at')
+        fields << 'updated_at' if resource.respond_to?('updated_at')
+        fields
+      end
       
       def field_type(klass, attr)
         # TODO:

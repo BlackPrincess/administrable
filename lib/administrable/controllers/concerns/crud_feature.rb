@@ -12,6 +12,8 @@ module Administrable
       before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
       def index
+        @search_fields ||= search_fields
+        @search_results_fields ||= search_results_fields
         params[:q] ||= {}
         @q = model_class.search(params[:q])
         @resources = @q.result.page(params[:page])
@@ -62,6 +64,14 @@ module Administrable
 
       def set_resource
         @resource = model_class.find(params[:id])
+      end
+      
+      def search_fields
+        []
+      end
+      
+      def search_results_fields
+        []
       end
 
       def administrable_index_url
