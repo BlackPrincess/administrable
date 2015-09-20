@@ -9,6 +9,7 @@ require 'coffee-rails'
 require 'haml-rails'
 require 'ransack'
 require 'kaminari'
+require 'enum_help'
 
 require 'administrable/engine'
 require 'administrable/field'

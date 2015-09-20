@@ -28,13 +28,13 @@
   %table.table.table-striped.col-xs-12
     %thead
       %tr
-        - @search_results_fields.each do |field|
+        - @search_results_header_fields.each do |field|
           %th= sort_link(@q, field)
         %th
     %tbody
       - @resources.each do |resource|
         %tr
-          - @search_results_fields.each do |field|
+          - @search_results_row_fields.each do |field|
             %td= resource.try(field)
           %td.text-right
             = link_to I18n.t('administrable.show'), resource, class: 'btn btn-default btn-show btn-sm'

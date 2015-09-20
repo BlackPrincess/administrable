@@ -6,6 +6,6 @@ class MembersController < ApplicationController
   end
   
   def search_results_fields
-    [:name, :age, :updated_at]
+    [:name, :age, {:status => :status_i18n}, :updated_at]
   end
 end

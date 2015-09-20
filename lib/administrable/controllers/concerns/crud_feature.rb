@@ -15,7 +15,8 @@ module Administrable
 
       def index
         @search_fields ||= search_fields
-        @search_results_fields ||= search_results_fields
+        @search_results_header_fields ||= search_results_header_fields
+        @search_results_row_fields ||= search_results_row_fields
         params[:q] ||= {}
         @q = model_class.search(params[:q])
         @resources = @q.result.page(params[:page])
@@ -76,6 +77,26 @@ module Administrable
         []
       end
       
+      def search_results_header_fields
+        search_results_fields.map { |a| case a
+          when Hash
+            a.keys.first
+          else
+            a
+          end
+        }
+      end
+
+      def search_results_row_fields
+        search_results_fields.map { |a| case a
+          when Hash
+            a.values.first
+          else
+            a
+        end
+        }
+      end
+      
       def form_fields
         Administrable::Field.edit_fields(@resource)
       end
@@ -85,11 +106,11 @@ module Administrable
       end
       
       def set_form_fields
-        @form_fields = form_fields
+        @form_fields ||= form_fields
       end
       
       def set_show_fields
-        @show_fields = show_fields
+        @show_fields ||= show_fields
       end
 
       def administrable_index_url
