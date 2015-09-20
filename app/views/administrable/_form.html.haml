@@ -5,6 +5,6 @@
   = form_for(@resource, html: {class: 'form-horizontal'}) do |f|
     %fieldset
       -# TODO: implement
-      - Administrable::Field.edit_fields(@resource).each do |attr|
+      - @form_fields.each do |attr|
         = render partial: 'form_group', locals: {f: f, attr: attr}
       = render partial: 'form_actions', locals: {f: f}

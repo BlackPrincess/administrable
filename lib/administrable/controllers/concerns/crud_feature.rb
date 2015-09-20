@@ -10,6 +10,8 @@ module Administrable
       helper_method :administrable_index_url, :administrable_new_url, :administrable_edit_url
       helper_method :model_class
       before_action :set_resource, only: [:show, :edit, :update, :destroy]
+      before_action :set_form_fields, only: [:new, :edit, :create, :update, :destroy]
+      before_action :set_show_fields, only: [:show]
 
       def index
         @search_fields ||= search_fields
@@ -72,6 +74,22 @@ module Administrable
       
       def search_results_fields
         []
+      end
+      
+      def form_fields
+        Administrable::Field.edit_fields(@resource)
+      end
+      
+      def show_fields
+        Administrable::Field.show_fields(@resource)
+      end
+      
+      def set_form_fields
+        @form_fields = form_fields
+      end
+      
+      def set_show_fields
+        @show_fields = show_fields
       end
 
       def administrable_index_url

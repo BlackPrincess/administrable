@@ -7,8 +7,7 @@
 .row
   .well
     %dl.dl-horizontal
-      -# TODO: implement
-      - Administrable::Field.show_fields(@resource).each do |attr|
+      - @show_fields.each do |attr|
         %dt
           = @resource.class.human_attribute_name(attr)
         %dd
