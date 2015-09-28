@@ -6,4 +6,6 @@ en:
     search: Search
     show: Show
     new: New
-    
+    values:
+      true_value: 'Yes'
+      false_value: 'No'

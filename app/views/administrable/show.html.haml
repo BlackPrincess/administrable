@@ -9,7 +9,7 @@
     %dl.dl-horizontal
       - @show_fields.each do |attr|
         %dt
-          = @resource.class.human_attribute_name(attr)
+          = model_class.human_attribute_name(attr)
         %dd
           - case Administrable::Field.field_type(model_class, attr)
           - when :belongs_to
@@ -17,6 +17,9 @@
             = @resource.try(Administrable::Field.accociation_attribute(model_class, attr)).try(:name)
           - when :enum
             = @resource.send("#{attr}_i18n")
+          - when :boolean
+            - attr_value = @resource.send(attr)
+            = model_class.human_attribute_name("#{attr}_#{attr_value}", default: I18n.t("administrable.values.#{attr_value}_value"))
           - else
             = @resource.send(attr)
 

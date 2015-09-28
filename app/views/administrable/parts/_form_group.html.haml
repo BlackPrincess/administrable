@@ -13,6 +13,10 @@
               = f.radio_button(attr, v)
               - # zmbacker/enum_help
               = k
+      - when :boolean
+        .checkbox
+          %label
+            = f.check_box(attr)
       - when :text
         = f.text_area attr, class: 'form-control'
       - when :integer

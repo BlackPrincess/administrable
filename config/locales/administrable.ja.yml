@@ -6,4 +6,6 @@ ja:
     search: 検索
     show: 閲覧
     new: 新規登録
-    
+    values:
+      true_value: はい
+      false_value: いいえ
