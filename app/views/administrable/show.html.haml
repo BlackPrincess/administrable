@@ -20,6 +20,8 @@
           - when :boolean
             - attr_value = @resource.send(attr)
             = model_class.human_attribute_name("#{attr}_#{attr_value}", default: I18n.t("administrable.values.#{attr_value}_value"))
+          - when :text
+            = simple_format @resource.send(attr)
           - else
             = @resource.send(attr)
 
