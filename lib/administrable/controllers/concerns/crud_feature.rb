@@ -61,8 +61,16 @@ module Administrable
 
       protected
 
+      def namespace
+        self.class.name.deconstantize
+      end
+
       def model_class
-        "#{controller_name.classify}".constantize
+        if namespace.present?
+          "#{namespace}::#{controller_name.classify}".constantize
+        else
+          "#{controller_name.classify}".constantize
+        end
       end
 
       def set_resource
@@ -128,7 +136,7 @@ module Administrable
       end
       
       def permitted_params
-        params.require(model_class.name.underscore.to_sym).permit!
+        params.require(model_class.name.underscore.split('/').join("_").to_sym).permit!
       end
     end
   end
