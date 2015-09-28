@@ -7,17 +7,17 @@ require "administrable/version"
 Gem::Specification.new do |s|
   s.name        = "administrable"
   s.version     = Administrable::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Administrable."
-  s.description = "TODO: Description of Administrable."
+  s.authors     = ["BlackPrincess"]
+  s.email       = ["black.princess.w@gmail.com"]
+  s.homepage    = "http://github.com/BlackPrincess/administrable"
+  s.summary     = "Summary of Administrable."
+  s.description = "Description of Administrable."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", ">= 4.1.7"
+  s.add_dependency "rails", ">= 4.2.1"
   s.add_dependency 'jquery-rails', '>= 3.1.2'
   s.add_dependency 'bootstrap-sass', '~> 3.3.5'
   s.add_dependency 'sass-rails', '>= 3.2'
