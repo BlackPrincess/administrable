@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class Administrable::FieldTest < ActiveSupport::TestCase
+class Administrable::FieldTest < Test::Unit::TestCase
   test "edit field" do
-    assert_not Administrable::Field.edit_fields(Company.new).include?('id')
+    assert_false Administrable::Field.edit_fields(Company.new).include?('id')
     assert Administrable::Field.edit_fields(Company.new).include?('name')
   end
   
