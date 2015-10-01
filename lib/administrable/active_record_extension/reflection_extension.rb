@@ -1,0 +1,15 @@
+module Administrable::ActiveRecordExtension::ReflectionExtension
+  def reflect_on_belongs_to_class(attr)
+    reflect_on_belongs_to(attr).try(:klass)
+  end
+  
+  def reflect_on_belongs_to(attr)
+    reflect_on_all_associations(:belongs_to).find { |_| _.foreign_key == attr }
+  end
+  
+  def reflect_on_belongs_to_attribute(klass, attr)
+    reflect_on_belongs_to.try(:name)
+  end
+end
+
+ActiveRecord::Base.extend(Administrable::ActiveRecordExtension::ReflectionExtension)

@@ -14,7 +14,7 @@ module Administrable
       
       def field_type(klass, attr)
         # TODO:
-        if get_association_belongs_to(klass, attr).present?
+        if get_association_class(klass, attr).present?
           :belongs_to
         elsif klass.defined_enums[attr].present?
           :enum
@@ -40,20 +40,16 @@ module Administrable
       end
       
       def get_association_class(klass, attr)
-        # TODO:
-        get_association_belongs_to(klass, attr).try(:klass)
+        klass.reflect_on_belongs_to_class(attr)
       end
       
       def get_association_belongs_to(klass, attr)
-        # TODO:
-        klass.reflect_on_all_associations(:belongs_to).find { |_| _.foreign_key == attr }
+        klass.reflect_on_belongs_to(attr)
       end
       
       def accociation_attribute(klass, attr)
-        # TODO:
-        get_association_belongs_to(klass, attr).name
+        klass.reflect_on_belongs_to_attribute(attr)
       end
-
 
       class MissingPrimaryNameException < StandardError
       end
