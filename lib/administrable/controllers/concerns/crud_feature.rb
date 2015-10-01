@@ -18,7 +18,7 @@ module Administrable
         @search_results_header_fields ||= search_results_header_fields
         @search_results_row_fields ||= search_results_row_fields
 
-        @q = model_class.search(search_params)
+        @q = search_scoped_model.search(search_params)
         @resources = @q.result.page(params[:page])
         render :index
       end
@@ -76,6 +76,10 @@ module Administrable
       def search_params
         params[:q] ||= {}
         params[:q]
+      end
+
+      def search_scoped_model
+        model_class
       end
 
       def set_resource
