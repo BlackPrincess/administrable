@@ -32,8 +32,10 @@ module Administrable
         return [] if association.nil?
         if association.respond_to?(:list_for_select)
           association.list_for_select
-        else
+        elsif association.new.attributes.include?('name')
           association.pluck(:name, :id)  
+        else
+          raise MissingPrimaryNameException
         end
       end
       
@@ -50,6 +52,10 @@ module Administrable
       def accociation_attribute(klass, attr)
         # TODO:
         get_association_belongs_to(klass, attr).name
+      end
+
+
+      class MissingPrimaryNameException < StandardError
       end
     end
   end
