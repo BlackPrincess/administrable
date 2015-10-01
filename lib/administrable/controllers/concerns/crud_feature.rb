@@ -17,8 +17,8 @@ module Administrable
         @search_fields ||= search_fields
         @search_results_header_fields ||= search_results_header_fields
         @search_results_row_fields ||= search_results_row_fields
-        params[:q] ||= {}
-        @q = model_class.search(params[:q])
+
+        @q = model_class.search(search_params)
         @resources = @q.result.page(params[:page])
         render :index
       end
@@ -71,6 +71,11 @@ module Administrable
         else
           "#{controller_name.classify}".constantize
         end
+      end
+
+      def search_params
+        params[:q] ||= {}
+        params[:q]
       end
 
       def set_resource
