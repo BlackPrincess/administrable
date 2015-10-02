@@ -1,7 +1,7 @@
 module Administrable
 end
 
-
+require 'active_record'
 require 'sass-rails'
 require 'jquery-rails'
 require 'bootstrap-sass'
@@ -13,6 +13,5 @@ require 'enum_help'
 
 require 'administrable/engine'
 require 'administrable/field'
-require 'active_record'
 require 'administrable/active_record_extension'
-require 'administrable/controllers/concerns/crud_feature'
+require 'administrable/controllers'
