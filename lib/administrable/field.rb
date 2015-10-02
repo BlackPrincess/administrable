@@ -14,7 +14,7 @@ module Administrable
       
       def field_type(klass, attr)
         # TODO:
-        if get_association_class(klass, attr).present?
+        if klass.reflect_on_belongs_to_class(attr).present?
           :belongs_to
         elsif klass.defined_enums[attr].present?
           :enum
@@ -28,7 +28,7 @@ module Administrable
       
       def data_for_select(klass, attr)
         # TODO:
-        association = get_association_class(klass, attr)
+        association = klass.reflect_on_belongs_to_class(attr)
         return [] if association.nil?
         if association.respond_to?(:list_for_select)
           association.list_for_select
@@ -39,18 +39,6 @@ module Administrable
         end
       end
       
-      def get_association_class(klass, attr)
-        klass.reflect_on_belongs_to_class(attr)
-      end
-      
-      def get_association_belongs_to(klass, attr)
-        klass.reflect_on_belongs_to(attr)
-      end
-      
-      def accociation_attribute(klass, attr)
-        klass.reflect_on_belongs_to_attribute(attr)
-      end
-
       class MissingPrimaryNameException < StandardError
       end
     end

@@ -13,4 +13,6 @@ require 'enum_help'
 
 require 'administrable/engine'
 require 'administrable/field'
+require 'active_record'
+require 'administrable/active_record_extension'
 require 'administrable/controllers/concerns/crud_feature'

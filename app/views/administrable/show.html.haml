@@ -14,7 +14,7 @@
           - case Administrable::Field.field_type(model_class, attr)
           - when :belongs_to
             -# TODO:
-            = @resource.try(Administrable::Field.accociation_attribute(model_class, attr)).try(:name)
+            = @resource.try(model_class.reflect_on_belongs_to_attribute(attr)).try(:name)
           - when :enum
             = @resource.send("#{attr}_i18n")
           - when :boolean

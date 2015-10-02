@@ -7,8 +7,8 @@ module Administrable::ActiveRecordExtension::ReflectionExtension
     reflect_on_all_associations(:belongs_to).find { |_| _.foreign_key == attr }
   end
   
-  def reflect_on_belongs_to_attribute(klass, attr)
-    reflect_on_belongs_to.try(:name)
+  def reflect_on_belongs_to_attribute(attr)
+    reflect_on_belongs_to(attr).try(:name)
   end
 end
 
