@@ -22,30 +22,33 @@
           = f.button type: :submit, class: 'btn btn-default btn-search' do
             %i.glyphicon.glyphicon-search
             = I18n.t('administrable.search')
+
 .row
   .text-center
     = paginate @resources
-  %table.table.table-striped.col-xs-12
-    %thead
-      %tr
-        - @search_results_header_fields.each do |field|
-          %th= sort_link(@q, field)
-        %th
-    %tbody
-      - @resources.each do |resource|
+  
+  - if @resources.any? 
+    %table.table.table-striped.col-xs-12
+      %thead
         %tr
-          - @search_results_row_fields.map(&:to_s).each do |field|
-            %td
-              - case Administrable::Field.field_type(model_class, field)
-                - when :belongs_to
-                  -# TODO:
-                  = resource.try(model_class.reflect_on_belongs_to_attribute(field)).try(:name)
-                - when :enum
-                  = resource.send("#{attr}_i18n")
-                - else
-                  = resource.try(field)
-          %td.text-right
-            = link_to I18n.t('administrable.show'), resource, class: 'btn btn-default btn-show btn-sm'
-            = link_to I18n.t('administrable.edit'), administrable_edit_url(resource), class: 'btn btn-info btn-edit btn-sm'
+          - @search_results_header_fields.each do |field|
+            %th= sort_link(@q, field)
+          %th
+      %tbody
+        - @resources.each do |resource|
+          %tr
+            - @search_results_row_fields.map(&:to_s).each do |field|
+              %td
+                - case Administrable::Field.field_type(model_class, field)
+                  - when :belongs_to
+                    -# TODO:
+                    = resource.try(model_class.reflect_on_belongs_to_attribute(field)).try(:name)
+                  - when :enum
+                    = resource.send("#{attr}_i18n")
+                  - else
+                    = resource.try(field)
+            %td.text-right
+              = link_to I18n.t('administrable.show'), resource, class: 'btn btn-default btn-show btn-sm'
+              = link_to I18n.t('administrable.edit'), administrable_edit_url(resource), class: 'btn btn-info btn-edit btn-sm'
   .text-center
     = paginate @resources
