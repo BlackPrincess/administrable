@@ -1,0 +1,1 @@
+require 'administrable/controllers/crud_feature'

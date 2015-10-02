@@ -39,7 +39,7 @@
               - case Administrable::Field.field_type(model_class, field)
                 - when :belongs_to
                   -# TODO:
-                  = resource.try(Administrable::Field.accociation_attribute(model_class, field)).try(:name)
+                  = resource.try(model_class.reflect_on_belongs_to_attribute(field)).try(:name)
                 - when :enum
                   = resource.send("#{attr}_i18n")
                 - else
