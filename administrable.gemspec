@@ -29,7 +29,9 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "test-unit"
+  s.add_development_dependency "test-unit-rails"
   s.add_development_dependency "test-unit-notify"
+  s.add_development_dependency "test-unit-activesupport"
   s.add_development_dependency "guard"
   s.add_development_dependency "guard-test"
 end
