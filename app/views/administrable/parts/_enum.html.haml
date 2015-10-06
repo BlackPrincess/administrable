@@ -1,0 +1,9 @@
+.form-group
+  = f.label attr, class: 'col-sm-2 control-label'
+  .col-sm-10
+    - model_class.defined_enums[attr].each do |k,v|
+      .radio.radio-inline
+        %label
+          = f.radio_button(attr, v)
+          - # zmbacker/enum_help
+          = k
