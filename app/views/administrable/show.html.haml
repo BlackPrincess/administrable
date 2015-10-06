@@ -22,6 +22,10 @@
             = model_class.human_attribute_name("#{attr}_#{attr_value}", default: I18n.t("administrable.values.#{attr_value}_value"))
           - when :text
             = simple_format @resource.send(attr)
+          - when :date
+            = l(@resource.try(attr)) unless @resource.try(attr).nil?
+          - when :datetime, :time
+            = l(@resource.try(attr).try(:localtime)) unless @resource.try(attr).nil?
           - else
             = @resource.send(attr)
 
