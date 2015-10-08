@@ -1,15 +1,15 @@
 - case Administrable::Field.field_type(model_class, attr)
   - when :belongs_to
-    = render partial: 'belongs_to', locals: {f: f, attr: attr}
+    = render partial: 'input_belongs_to', locals: {f: f, attr: attr}
   - when :enum
-    = render partial: 'enum', locals: {f: f, attr: attr}
+    = render partial: 'input_enum', locals: {f: f, attr: attr}
   - when :boolean
-    = render partial: 'boolean', locals: {f: f, attr: attr}
+    = render partial: 'input_boolean', locals: {f: f, attr: attr}
   - when :text
-    = render partial: 'text', locals: {f: f, attr: attr}
+    = render partial: 'input_text', locals: {f: f, attr: attr}
   - when :integer
-    = render partial: 'integer', locals: {f: f, attr: attr}
+    = render partial: 'input_integer', locals: {f: f, attr: attr}
   - when :date
-    = render partial: 'date', locals: {f: f, attr: attr}
+    = render partial: 'input_date', locals: {f: f, attr: attr}
   - else
-    = render partial: 'default_field', locals: {f: f, attr: attr}
+    = render partial: 'input_default_field', locals: {f: f, attr: attr}
