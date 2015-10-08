@@ -4,7 +4,8 @@ module Administrable
 
     included do |klass|
       def klass.local_prefixes
-        super + ["#{controller_path}/parts", 'administrable', 'administrable/parts']
+        dirs = ["parts", 'form_fields']
+        super + dirs.map{|dir| "#{controller_path}/#{dir}"} + ['administrable'] + dirs.map{|dir| "administrable/#{dir}"}
       end
 
       helper_method :administrable_index_url, :administrable_new_url, :administrable_edit_url
