@@ -1,21 +1,18 @@
 - show_fields.each do |attr|
-  %dt
-    = model_class.human_attribute_name(attr)
-  %dd
-    - case Administrable::Field.field_type(model_class, attr)
+  - case Administrable::Field.field_type(model_class, attr)
     - when :belongs_to
-      -# TODO:
-      = resource.try(model_class.reflect_on_belongs_to_attribute(attr)).try(:name)
+      = render partial: 'show_belongs_to', locals: {attr: attr, resource: resource}
     - when :enum
-      = resource.send("#{attr}_i18n")
+      = render partial: 'show_enum', locals: {attr: attr, resource: resource}
     - when :boolean
-      - attr_value = resource.send(attr)
-      = model_class.human_attribute_name("#{attr}_#{attr_value}", default: I18n.t("administrable.values.#{attr_value}_value"))
+      = render partial: 'show_boolean', locals: {attr: attr, resource: resource}
     - when :text
-      = simple_format resource.send(attr)
+      = render partial: 'show_text', locals: {attr: attr, resource: resource}
     - when :date
-      = l(resource.try(attr)) unless resource.try(attr).nil?
-    - when :datetime, :time
-      = l(resource.try(attr).try(:localtime)) unless resource.try(attr).nil?
+      = render partial: 'show_date', locals: {attr: attr, resource: resource}
+    - when :datetime
+      = render partial: 'show_datetime', locals: {attr: attr, resource: resource}
+    - when :time
+      = render partial: 'show_time', locals: {attr: attr, resource: resource}
     - else
-      = resource.send(attr)
+      = render partial: 'show_default', locals: {attr: attr, resource: resource}

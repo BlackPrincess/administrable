@@ -1,0 +1,4 @@
+%dt= model_class.human_attribute_name(attr)
+%dd
+  -# TODO:
+  = resource.try(model_class.reflect_on_belongs_to_attribute(attr)).try(:name)

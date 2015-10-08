@@ -1,0 +1,3 @@
+- attr_value = resource.send(attr)
+%dt= model_class.human_attribute_name(attr)
+%dd= model_class.human_attribute_name("#{attr}_#{attr_value}", default: I18n.t("administrable.values.#{attr_value}_value"))
