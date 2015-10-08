@@ -18,4 +18,4 @@
 
 .row
   .text-center
-    = link_to I18n.t('administrable.destroy'), @resource, :method => :delete, class: 'btn btn-danger'
+    = render partial: 'delete_link', locals: {resource: @resource}
