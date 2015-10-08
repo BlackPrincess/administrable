@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :companies
   resources :members
+  resources :field_examples
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

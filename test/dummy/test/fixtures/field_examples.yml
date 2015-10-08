@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  member_id: 
+  status: MyString
+  checked: false
+  subject: MyString
+  body: MyText
+  age: 1
+  birthday: 2015-10-08
+  birtydatetime: 2015-10-08 16:52:21
+  birthtime: 2015-10-08 16:52:21
+
+two:
+  member_id: 
+  status: MyString
+  checked: false
+  subject: MyString
+  body: MyText
+  age: 1
+  birthday: 2015-10-08
+  birtydatetime: 2015-10-08 16:52:21
+  birthtime: 2015-10-08 16:52:21

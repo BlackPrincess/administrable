@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909155453) do
+ActiveRecord::Schema.define(version: 20151008075221) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,22 @@ ActiveRecord::Schema.define(version: 20150909155453) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "field_examples", force: :cascade do |t|
+    t.integer  "member_id"
+    t.string   "status"
+    t.boolean  "checked"
+    t.string   "subject"
+    t.text     "body"
+    t.integer  "age"
+    t.date     "birthday"
+    t.datetime "birtydatetime"
+    t.time     "birthtime"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "field_examples", ["member_id"], name: "index_field_examples_on_member_id"
 
   create_table "members", force: :cascade do |t|
     t.integer  "company_id"

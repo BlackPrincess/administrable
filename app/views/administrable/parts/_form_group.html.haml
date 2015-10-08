@@ -11,5 +11,9 @@
     = render partial: 'input_integer', locals: {f: f, attr: attr}
   - when :date
     = render partial: 'input_date', locals: {f: f, attr: attr}
+  - when :datetime
+    = render partial: 'input_datetime', locals: {f: f, attr: attr}
+  - when :time
+    = render partial: 'input_time', locals: {f: f, attr: attr}
   - else
     = render partial: 'input_default_field', locals: {f: f, attr: attr}
