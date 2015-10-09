@@ -4,4 +4,5 @@ module Administrable
 end
 
 require 'administrable/field/basic_field'
+require 'administrable/field/basic_filter'
 require 'administrable/field/exceptions'

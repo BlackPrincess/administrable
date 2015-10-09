@@ -1,15 +1,17 @@
 module Administrable
   module Field
     module BasicField
+      
+      def self.filters
+        [Administrable::Field::BasicFilter]
+      end
+      
       def self.edit_fields(resource)
-        resource.attributes.except('id', 'created_at', 'updated_at').keys
+        filters.inject(resource.attributes.keys) {|acc, f| f.edit_field_filter(acc)}
       end
 
       def self.show_fields(resource)
-        fields = edit_fields(resource)
-        fields << 'created_at' if resource.respond_to?('created_at')
-        fields << 'updated_at' if resource.respond_to?('updated_at')
-        fields
+        filters.inject(resource.attributes.keys) {|acc, f| f.show_field_filter(acc)}
       end
 
       def self.field_type(klass, attr)
