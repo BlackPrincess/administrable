@@ -1,4 +1,4 @@
 .form-group
   = f.label attr, class: 'col-sm-2 control-label'
   .col-sm-10
-    = f.select(attr, Administrable::Field.data_for_select(model_class, attr), {include_blank: true}, class: 'form-control')
+    = f.select(attr, field_strategy.data_for_select(model_class, attr), {include_blank: true}, class: 'form-control')

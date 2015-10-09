@@ -39,7 +39,7 @@
           %tr
             - @search_results_row_fields.map(&:to_s).each do |field|
               %td
-                - case Administrable::Field.field_type(model_class, field)
+                - case field_strategy.field_type(model_class, field)
                   - when :belongs_to
                     -# TODO:
                     = resource.try(model_class.reflect_on_belongs_to_attribute(field)).try(:name)

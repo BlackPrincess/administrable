@@ -9,7 +9,7 @@ module Administrable
       end
 
       helper_method :administrable_index_url, :administrable_new_url, :administrable_edit_url
-      helper_method :model_class
+      helper_method :model_class, :field_strategy
       before_action :set_resource, only: [:show, :edit, :update, :destroy]
       before_action :set_form_fields, only: [:new, :edit, :create, :update, :destroy]
       before_action :set_show_fields, only: [:show]
@@ -117,12 +117,12 @@ module Administrable
       
       def form_fields
         @resource ||= model_class.new # TODO:
-        Administrable::Field.edit_fields(@resource)
+        field_strategy.edit_fields(@resource)
       end
       
       def show_fields
         @resource ||= model_class.new # TODO:
-        Administrable::Field.show_fields(@resource)
+        field_strategy.show_fields(@resource)
       end
       
       def set_form_fields
@@ -147,6 +147,10 @@ module Administrable
       
       def permitted_params
         params.require(model_class.name.underscore.split('/').join("_").to_sym).permit!
+      end
+      
+      def field_strategy
+        Administrable::Field::BasicField
       end
     end
   end
