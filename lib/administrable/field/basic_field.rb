@@ -3,7 +3,7 @@ module Administrable
     class BasicField
       class << self
         def filters
-          [Administrable::Field::BasicFilter]
+          [Administrable::Field::Filter::BasicFilter]
         end
         
         def edit_fields(resource)

@@ -4,6 +4,6 @@ module Administrable
 end
 
 require 'administrable/field/basic_field'
-require 'administrable/field/basic_filter'
-require 'administrable/field/record_with_operator_filter'
 require 'administrable/field/exceptions'
+require 'administrable/field/filter/basic_filter'
+require 'administrable/field/filter/record_with_operator_filter'
