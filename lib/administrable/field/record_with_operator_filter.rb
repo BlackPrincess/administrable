@@ -1,6 +1,6 @@
 module Administrable
   module Field
-    module RecordWithOperatorFilter
+    class RecordWithOperatorFilter
       def self.edit_field_filter(attributes)
         ignore_fields = ['created_by', 'updated_by']
         attributes.reject { |a| ignore_fields.include?(a) }

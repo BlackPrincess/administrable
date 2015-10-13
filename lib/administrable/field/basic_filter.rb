@@ -1,6 +1,6 @@
 module Administrable
   module Field
-    module BasicFilter
+    class BasicFilter
       def self.edit_field_filter(attributes)
         ignore_fields = ['id' , 'created_at', 'updated_at']
         attributes.reject { |a| ignore_fields.include?(a) }
