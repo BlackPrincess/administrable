@@ -1,0 +1,11 @@
+.well.col-sm-12
+  = search_form_for(q) do |f|
+    %fieldset
+      - search_fields.each do |field|
+        .form-group.col-lg-3.col-sm-4.col-xs-6
+          = f.label(field, class: "control-label") 
+          = f.search_field(field, class: "form-control")
+      .form-group.col-xs-12.text-center
+        = f.button type: :submit, class: 'btn btn-default btn-search' do
+          %i.glyphicon.glyphicon-search
+          = I18n.t('administrable.search')

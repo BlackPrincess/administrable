@@ -10,44 +10,12 @@
           %i.glyphicon.glyphicon-plus
           = I18n.t('administrable.new')
 .row
-  .well.col-sm-12
-    = search_form_for(@q) do |f|
-      %fieldset
-        - @search_fields.each do |field|
-          .form-group.col-lg-3.col-sm-4.col-xs-6
-            = f.label(field, class: "control-label") 
-            = f.search_field(field, class: "form-control")
-        .form-group.col-xs-12.text-center
-          = f.button type: :submit, class: 'btn btn-default btn-search' do
-            %i.glyphicon.glyphicon-search
-            = I18n.t('administrable.search')
+  = render partial: 'search_form', locals: {search_fields: @search_fields, q: @q}
 
 .row
   .text-center
     = paginate @resources
   
-  - if @resources.any? 
-    %table.table.table-striped.col-xs-12
-      %thead
-        %tr
-          - @search_results_header_fields.each do |field|
-            %th= sort_link(@q, field)
-          %th
-      %tbody
-        - @resources.each do |resource|
-          %tr
-            - @search_results_row_fields.map(&:to_s).each do |field|
-              %td
-                - case field_strategy.field_type(model_class, field)
-                  - when :belongs_to
-                    -# TODO:
-                    = resource.try(model_class.reflect_on_belongs_to_attribute(field)).try(:name)
-                  - when :enum
-                    = resource.send("#{attr}_i18n")
-                  - else
-                    = resource.try(field)
-            %td.text-right
-              = link_to I18n.t('administrable.show'), resource, class: 'btn btn-default btn-show btn-sm'
-              = link_to I18n.t('administrable.edit'), administrable_edit_url(resource), class: 'btn btn-info btn-edit btn-sm'
+  = render partial: 'search_result', locals: {resources: @resources, header_fields: @search_results_header_fields, row_fields: @search_results_row_fields}
   .text-center
     = paginate @resources
