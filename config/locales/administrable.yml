@@ -10,7 +10,7 @@ en:
       new: 'New %{model_name}'
       edit: 'Edit %{model_name}'
       show: 'Show %{model_name}'
-      listing: 'Listing %{model_name}'
+      index: 'Listing %{model_name}'
     values:
       true_value: 'Yes'
       false_value: 'No'

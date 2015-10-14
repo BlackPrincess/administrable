@@ -10,7 +10,7 @@ ja:
       new: '%{model_name}登録'
       edit: '%{model_name}編集'
       show: '%{model_name}閲覧'
-      listing: '%{model_name}一覧'
+      index: '%{model_name}一覧'
     values:
       true_value: はい
       false_value: いいえ
