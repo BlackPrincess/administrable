@@ -1,7 +1,7 @@
 .row
   .col-sm-10
     %h1
-      = I18n.t('administrable.page_title.edit', model_name: model_class.model_name.human)
+      = accurate_title
 
 .row
   = render 'form'

@@ -8,6 +8,7 @@ module Administrable
         super + dirs.map{|dir| "#{controller_path}/#{dir}"} + ['administrable'] + dirs.map{|dir| "administrable/#{dir}"}
       end
 
+      helper_method :accurate_title
       helper_method :administrable_index_url, :administrable_new_url, :administrable_edit_url
       helper_method :model_class, :field_strategy
       before_action :set_resource, only: [:show, :edit, :update, :destroy]
@@ -71,6 +72,21 @@ module Administrable
           "#{namespace}::#{controller_name.classify}".constantize
         else
           "#{controller_name.classify}".constantize
+        end
+      end
+      
+      def accurate_title
+        case params[:action].to_sym
+          when :index
+            I18n.t('administrable.page_title.index', model_name: model_class.model_name.human)
+          when :new
+            I18n.t('administrable.page_title.new', model_name: model_class.model_name.human)
+          when :show
+            I18n.t('administrable.page_title.show', model_name: model_class.model_name.human)
+          when :edit
+            I18n.t('administrable.page_title.edit', model_name: model_class.model_name.human)
+          else
+            ''            
         end
       end
 
