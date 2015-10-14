@@ -14,3 +14,7 @@ ja:
     values:
       true_value: はい
       false_value: いいえ
+    messages:
+      created: '%{resource}を作成しました'
+      updated: '%{resource}を更新しました'
+      destroyed: '%{resource}を削除しました'

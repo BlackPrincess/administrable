@@ -14,4 +14,7 @@ en:
     values:
       true_value: 'Yes'
       false_value: 'No'
-    messages: 
+    messages:
+      created: '%{resource} has been successfully created'
+      updated: '%{resource} has been successfully updated'
+      destroyed: '%{resource} has been successfully destroyed'

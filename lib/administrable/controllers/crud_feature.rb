@@ -3,6 +3,7 @@ module Administrable
     extend ActiveSupport::Concern
 
     included do |klass|
+      klass.include Administrable::FlashMessage
       def klass.local_prefixes
         dirs = ["parts", 'form_fields', 'show_fields']
         super + dirs.map{|dir| "#{controller_path}/#{dir}"} + ['administrable'] + dirs.map{|dir| "administrable/#{dir}"}
@@ -47,7 +48,7 @@ module Administrable
         @resource = model_class.new(permitted_params)
 
         if @resource.save
-          redirect_to @resource
+          redirect_to @resource, flash: {success: I18n.t('administrable.messages.created', resource: model_class.model_name.human)} 
         else
           render :new
         end
@@ -55,15 +56,15 @@ module Administrable
 
       def update
         if @resource.update(permitted_params)
-          redirect_to @resource
+          redirect_to @resource, flash: {success: I18n.t('administrable.messages.updated', resource: model_class.model_name.human)}
         else
           render :edit
         end
       end
 
       def destroy
-        @resource.destroy
-        redirect_to action: :index
+        @resource.destroy!
+        redirect_to administrable_index_url, flash: {success: I18n.t('administrable.messages.destroyed', resource: model_class.model_name.human)}
       end
 
       protected
