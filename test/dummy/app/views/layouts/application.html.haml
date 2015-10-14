@@ -1,57 +1,57 @@
 !!!
 %html{:lang => "en"}
-%head
-%meta{:charset => "utf-8"}/
-%title= title
-%meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
-%meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
-= stylesheet_link_tag 'application', media: 'all'
-= csrf_meta_tags
-%body
-.navbar.navbar-default.navbar-fixed-top
-.container
-.navbar-header
-%a.navbar-brand{:href => "../"} Default
-%button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", :type => "button"}
-%span.icon-bar
-%span.icon-bar
-%span.icon-bar
-#navbar-main.navbar-collapse.collapse
-%ul.nav.navbar-nav
-%li.dropdown
-%a#themes.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-Menu
-%span.caret
-%ul.dropdown-menu{"aria-labelledby" => "themes"}
-%li= link_to 'Company', companies_url
-%li= link_to 'Members', members_url
-%li.divider
-%li
-%a{:href => "#"} Dummy
-%li= link_to 'Field Example', field_examples_url
-%li= link_to 'Company', companies_url
-%li.dropdown
-%a#download.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-Cosmo
-%span.caret
-%ul.dropdown-menu{"aria-labelledby" => "download"}
-%li
-%a{:href => "#"} Dummy
-%li.divider
-%li
-%a{:href => "#"} Dummy
-%li
-%a{:href => "#"} Dummy
-%li.divider
-%li
-%a{:href => "#"} Dummy
-%li
-%a{:href => "#"} Dummy
-%ul.nav.navbar-nav.navbar-right
-%li
-%a{:href => "#"} Dummy
-%li
-%a{:href => "#"} Dummy
-.container
-= yield
-= javascript_include_tag 'application'
+  %head
+    %meta{:charset => "utf-8"}/
+    %title= title
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    = stylesheet_link_tag 'application', media: 'all'
+    = csrf_meta_tags
+  %body
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          %a.navbar-brand{:href => "../"} Default
+          %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        #navbar-main.navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li.dropdown
+              %a#themes.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Menu
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "themes"}
+                %li= link_to 'Company', companies_url
+                %li= link_to 'Members', members_url
+                %li.divider
+                %li
+                  %a{:href => "#"} Dummy
+            %li= link_to 'Field Example', field_examples_url
+            %li= link_to 'Company', companies_url
+            %li.dropdown
+              %a#download.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Cosmo
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "download"}
+                %li
+                  %a{:href => "#"} Dummy
+                %li.divider
+                %li
+                  %a{:href => "#"} Dummy
+                %li
+                  %a{:href => "#"} Dummy
+                %li.divider
+                %li
+                  %a{:href => "#"} Dummy
+                %li
+                  %a{:href => "#"} Dummy
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              %a{:href => "#"} Dummy
+            %li
+              %a{:href => "#"} Dummy
+    .container
+      = yield
+    = javascript_include_tag 'application'
