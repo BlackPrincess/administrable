@@ -1,8 +1,7 @@
 .row
   .col-sm-10
     %h1
-      Show
-      = model_class.model_name.human
+      = I18n.t('administrable.page_title.show', model_name: model_class.model_name.human)
 
 .row
   .well

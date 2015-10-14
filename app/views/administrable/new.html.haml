@@ -1,8 +1,7 @@
 .row
   .col-sm-10
     %h1
-      = I18n.t('administrable.new')
-      = model_class.model_name.human
+      = I18n.t('administrable.page_title.new', model_name: model_class.model_name.human)
 
 .row
   = render 'form'

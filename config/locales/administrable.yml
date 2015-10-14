@@ -6,6 +6,12 @@ en:
     search: Search
     show: Show
     new: New
+    page_title:
+      new: 'New %{model_name}'
+      edit: 'Edit %{model_name}'
+      show: 'Show %{model_name}'
+      listing: 'Listing %{model_name}'
     values:
       true_value: 'Yes'
       false_value: 'No'
+    messages: 
