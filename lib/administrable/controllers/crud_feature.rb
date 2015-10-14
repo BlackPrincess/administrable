@@ -7,13 +7,18 @@ module Administrable
         dirs = ["parts", 'form_fields', 'show_fields']
         super + dirs.map{|dir| "#{controller_path}/#{dir}"} + ['administrable'] + dirs.map{|dir| "administrable/#{dir}"}
       end
-
+      
+      helper_method :title
+      helper_method :title=
       helper_method :accurate_title
       helper_method :administrable_index_url, :administrable_new_url, :administrable_edit_url
       helper_method :model_class, :field_strategy
+      
       before_action :set_resource, only: [:show, :edit, :update, :destroy]
       before_action :set_form_fields, only: [:new, :edit, :create, :update, :destroy]
       before_action :set_show_fields, only: [:show]
+
+      attr_writer :title
 
       def index
         @search_fields ||= search_fields
@@ -73,6 +78,12 @@ module Administrable
         else
           "#{controller_name.classify}".constantize
         end
+      end
+      
+      def title
+        return @title if @title.present?
+        accurate_title
+        
       end
       
       def accurate_title
