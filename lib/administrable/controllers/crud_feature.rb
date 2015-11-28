@@ -47,7 +47,7 @@ module Administrable
         @resource = new_resource(permitted_params)
 
         if @resource.save
-          redirect_to @resource, flash: {success: I18n.t('administrable.messages.created', resource: model_class.model_name.human)} 
+          redirect_to administrable_show_url(@resource), flash: {success: I18n.t('administrable.messages.created', resource: model_class.model_name.human)}
         else
           render :new
         end
@@ -55,7 +55,7 @@ module Administrable
 
       def update
         if @resource.update(permitted_params)
-          redirect_to @resource, flash: {success: I18n.t('administrable.messages.updated', resource: model_class.model_name.human)}
+          redirect_to administrable_show_url(@resource), flash: {success: I18n.t('administrable.messages.updated', resource: model_class.model_name.human)}
         else
           render :edit
         end
@@ -149,6 +149,10 @@ module Administrable
 
       def administrable_index_url
         polymorphic_url(model_class)
+      end
+
+      def administrable_show_url(resource = @resource)
+        polymorphic_url(resource)
       end
 
       def administrable_new_url
