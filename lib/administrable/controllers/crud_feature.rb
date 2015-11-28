@@ -31,7 +31,7 @@ module Administrable
       end
 
       def new
-        @resource = model_class.new
+        @resource = new_resource
         render :new
       end
 
@@ -44,7 +44,7 @@ module Administrable
       end
 
       def create
-        @resource = model_class.new(permitted_params)
+        @resource = new_resource(permitted_params)
 
         if @resource.save
           redirect_to @resource, flash: {success: I18n.t('administrable.messages.created', resource: model_class.model_name.human)} 
@@ -93,6 +93,10 @@ module Administrable
         model_class
       end
 
+      def new_resource(*args)
+        model_class.new(*args)
+      end
+
       def set_resource
         @resource = model_class.find(params[:id])
       end
@@ -126,12 +130,12 @@ module Administrable
       end
       
       def form_fields
-        @resource ||= model_class.new # TODO:
+        @resource ||= new_resource # TODO:
         field_strategy.edit_fields(@resource)
       end
       
       def show_fields
-        @resource ||= model_class.new # TODO:
+        @resource ||= new_resource # TODO:
         field_strategy.show_fields(@resource)
       end
       
