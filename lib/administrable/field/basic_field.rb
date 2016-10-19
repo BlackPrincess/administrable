@@ -18,20 +18,8 @@ module Administrable
           # TODO:
           if klass.reflect_on_belongs_to_class(attr).present?
             :belongs_to
-          elsif klass.defined_enums[attr].present?
-            :enum
-          elsif klass.columns_hash[attr].present?
-            klass.columns_hash[attr].type
-          else
-            # Default type is string
-            :string
-          end
-        end
-  
-        def field_type(klass, attr)
-          # TODO:
-          if klass.reflect_on_belongs_to_class(attr).present?
-            :belongs_to
+          elsif klass.reflect_on_has_many_to_class(attr).present?
+            :has_many
           elsif klass.defined_enums[attr].present?
             :enum
           elsif klass.columns_hash[attr].present?
