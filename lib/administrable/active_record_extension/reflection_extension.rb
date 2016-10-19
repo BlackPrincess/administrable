@@ -16,7 +16,7 @@ module Administrable::ActiveRecordExtension::ReflectionExtension
   end
 
   def reflect_on_has_many_to(attr)
-    reflect_on_all_associations(:has_many).find { |_| _.foreign_key == attr }
+    reflect_on_all_associations(:has_many).find { |_| _.plural_name == attr }
   end
 
   def reflect_on_has_many_to_attribute(attr)
