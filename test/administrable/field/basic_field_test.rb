@@ -10,4 +10,9 @@ class Administrable::Field::BasicFieldTest < Test::Unit::TestCase
     assert_equal :belongs_to, Administrable::Field::BasicField.field_type(Member, 'company_id')
     assert_not_equal :belongs_to, Administrable::Field::BasicField.field_type(Member, 'name')
   end
+
+  test 'field_type has_many' do
+    assert_equal :has_many, Administrable::Field::BasicField.field_type(Company, 'members')
+    assert_not_equal :has_many, Administrable::Field::BasicField.field_type(Company, 'member')
+  end
 end

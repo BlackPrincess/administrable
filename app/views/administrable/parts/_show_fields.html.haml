@@ -1,7 +1,9 @@
-- show_fields.each do |attr|
+- show_fields.map(&:to_s).each do |attr|
   - case field_strategy.field_type(model_class, attr)
     - when :belongs_to
       = render partial: 'show_belongs_to', locals: {attr: attr, resource: resource}
+    - when :has_many
+      = render partial: 'show_has_many', locals: {attr: attr, resource: resource}
     - when :enum
       = render partial: 'show_enum', locals: {attr: attr, resource: resource}
     - when :boolean
