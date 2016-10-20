@@ -1,5 +1,6 @@
 %dt= model_class.human_attribute_name(attr)
 %dd
   -# TODO:
-  - resource.try(model_class.reflect_on_has_many_to_attribute(attr)).each do |item|
-    %div= item.try(:name)
+  %ul.list-unstyled
+    - resource.try(model_class.reflect_on_has_many_to_attribute(attr)).each do |item|
+      %li= item.try(:name)
