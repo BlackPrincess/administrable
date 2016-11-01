@@ -2,7 +2,7 @@
   = render partial: 'error_massages', locals: {resource: @resource}
 
 .well
-  = form_for(@resource, html: {class: 'form-horizontal'}) do |f|
+  = form_for(namespaced_resource(@resource), html: {class: 'form-horizontal'}) do |f|
     %fieldset
       -# TODO: implement
       - @form_fields.each do |attr|
