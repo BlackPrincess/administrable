@@ -74,15 +74,17 @@ module Administrable
       end
 
       def namespaced_resource(resource)
-        namespace.present? ? [namespace.downcase, resource] : resource
+        a = controller_path.split('/')
+        a.pop
+        a.present? ? [a.join('_'), resource] : resource
       end
 
-      def use_model_namespace?
+      def klass.model_in_same_namespace?
         true
       end
 
       def model_class
-        if namespace.present? && use_model_namespace?
+        if namespace.present? && model_in_same_namespace?
           "#{namespace}::#{controller_name.classify}".constantize
         else
           "#{controller_name.classify}".constantize

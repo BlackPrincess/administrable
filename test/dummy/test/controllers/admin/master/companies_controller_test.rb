@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::CompaniesControllerTest < ActionController::TestCase
+class Admin::Master::CompaniesControllerTest < ActionController::TestCase
   fixtures :companies
   
   test 'index' do

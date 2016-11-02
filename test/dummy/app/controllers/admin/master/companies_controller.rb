@@ -1,7 +1,7 @@
-class Admin::CompaniesController < ApplicationController
+class Admin::Master::CompaniesController < ApplicationController
   include Administrable::CRUDFeature
 
-  def use_model_namespace?
+  def model_in_same_namespace?
     false
   end
 
