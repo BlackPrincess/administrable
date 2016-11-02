@@ -72,15 +72,18 @@ module Administrable
       def namespace
         self.class.name.deconstantize
       end
-
-      def namespaced_resource(resource)
-        a = controller_path.split('/')
-        a.pop
-        a.present? ? [a.join('_'), resource] : resource
+      
+      def model_in_same_namespace?
+        true
       end
 
-      def klass.model_in_same_namespace?
-        true
+      def namespaced_resource(resource)
+        return resource if model_in_same_namespace?
+        if namespace.present?
+          [namespace.split('::').map(&:downcase).join("_").to_sym, resource]
+        else 
+          resource
+        end
       end
 
       def model_class

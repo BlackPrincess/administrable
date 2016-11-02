@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     namespace :master do
       resources :companies
     end
+    
+    resources :members
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
