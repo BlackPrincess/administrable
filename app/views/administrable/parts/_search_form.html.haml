@@ -1,5 +1,5 @@
 .well.col-sm-12
-  = search_form_for(q) do |f|
+  = search_form_for(namespaced_resource(q)) do |f|
     %fieldset
       - search_fields.each do |field|
         .form-group.col-lg-3.col-sm-4.col-xs-6

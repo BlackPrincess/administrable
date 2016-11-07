@@ -24,12 +24,14 @@
                 %span.caret
               %ul.dropdown-menu{"aria-labelledby" => "themes"}
                 %li= link_to 'Company', companies_url
+                %li= link_to 'AdminCompany', admin_master_companies_url
                 %li= link_to 'Members', members_url
                 %li.divider
                 %li
                   %a{:href => "#"} Dummy
             %li= link_to 'Field Example', field_examples_url
             %li= link_to 'Company', companies_url
+            %li= link_to 'AdminCompany', admin_master_companies_url
             %li.dropdown
               %a#download.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 Cosmo

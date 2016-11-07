@@ -11,6 +11,7 @@ module Administrable
       
       helper_method :title
       helper_method :title=
+      helper_method :namespaced_resource
       helper_method :administrable_index_url, :administrable_new_url, :administrable_edit_url
       helper_method :model_class, :field_strategy
       
@@ -71,9 +72,22 @@ module Administrable
       def namespace
         self.class.name.deconstantize
       end
+      
+      def model_in_same_namespace?
+        true
+      end
+
+      def namespaced_resource(resource)
+        return resource if model_in_same_namespace?
+        if namespace.present?
+          [namespace.split('::').map(&:downcase).join("_").to_sym, resource]
+        else 
+          resource
+        end
+      end
 
       def model_class
-        if namespace.present?
+        if namespace.present? && model_in_same_namespace?
           "#{namespace}::#{controller_name.classify}".constantize
         else
           "#{controller_name.classify}".constantize
@@ -148,19 +162,19 @@ module Administrable
       end
 
       def administrable_index_url
-        polymorphic_url(model_class)
+        polymorphic_url(namespaced_resource(model_class))
       end
 
       def administrable_show_url(resource = @resource)
-        polymorphic_url(resource)
+        polymorphic_url(namespaced_resource(resource))
       end
 
       def administrable_new_url
-        new_polymorphic_url(model_class)
+        new_polymorphic_url(namespaced_resource(model_class))
       end
       
       def administrable_edit_url(resource = @resource)
-        edit_polymorphic_url(resource)
+        edit_polymorphic_url(namespaced_resource(resource))
       end
       
       def permitted_params
