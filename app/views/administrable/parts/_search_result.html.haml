@@ -20,4 +20,4 @@
                   = resource.try(field)
           %td.text-right
             = link_to I18n.t('administrable.show'), namespaced_resource(resource), class: 'btn btn-default btn-show btn-sm'
-            = link_to I18n.t('administrable.edit'), administrable_edit_url(resource), class: 'btn btn-info btn-edit btn-sm'
+            = link_to I18n.t('administrable.edit'), administrable_edit_path(resource), class: 'btn btn-info btn-edit btn-sm'

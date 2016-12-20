@@ -12,7 +12,7 @@ module Administrable
       helper_method :title
       helper_method :title=
       helper_method :namespaced_resource
-      helper_method :administrable_index_url, :administrable_new_url, :administrable_edit_url
+      helper_method :administrable_index_path, :administrable_new_path, :administrable_edit_path
       helper_method :model_class, :field_strategy
       
       before_action :set_resource, only: [:show, :edit, :update, :destroy]
@@ -48,7 +48,7 @@ module Administrable
         @resource = new_resource(permitted_params)
 
         if @resource.save
-          redirect_to administrable_show_url(@resource), flash: {success: I18n.t('administrable.messages.created', resource: model_class.model_name.human)}
+          redirect_to administrable_show_path(@resource), flash: {success: I18n.t('administrable.messages.created', resource: model_class.model_name.human)}
         else
           render :new
         end
@@ -56,7 +56,7 @@ module Administrable
 
       def update
         if @resource.update(permitted_params)
-          redirect_to administrable_show_url(@resource), flash: {success: I18n.t('administrable.messages.updated', resource: model_class.model_name.human)}
+          redirect_to administrable_show_path(@resource), flash: {success: I18n.t('administrable.messages.updated', resource: model_class.model_name.human)}
         else
           render :edit
         end
@@ -64,7 +64,7 @@ module Administrable
 
       def destroy
         @resource.destroy!
-        redirect_to administrable_index_url, flash: {success: I18n.t('administrable.messages.destroyed', resource: model_class.model_name.human)}
+        redirect_to administrable_index_path, flash: {success: I18n.t('administrable.messages.destroyed', resource: model_class.model_name.human)}
       end
 
       protected
@@ -161,20 +161,20 @@ module Administrable
         @show_fields ||= show_fields
       end
 
-      def administrable_index_url
-        polymorphic_url(namespaced_resource(model_class))
+      def administrable_index_path
+        polymorphic_path(namespaced_resource(model_class))
       end
 
-      def administrable_show_url(resource = @resource)
-        polymorphic_url(namespaced_resource(resource))
+      def administrable_show_path(resource = @resource)
+        polymorphic_path(namespaced_resource(resource))
       end
 
-      def administrable_new_url
-        new_polymorphic_url(namespaced_resource(model_class))
+      def administrable_new_path
+        new_polymorphic_path(namespaced_resource(model_class))
       end
       
-      def administrable_edit_url(resource = @resource)
-        edit_polymorphic_url(namespaced_resource(resource))
+      def administrable_edit_path(resource = @resource)
+        edit_polymorphic_path(namespaced_resource(resource))
       end
       
       def permitted_params
